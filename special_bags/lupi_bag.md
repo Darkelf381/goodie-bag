@@ -9,6 +9,7 @@ Welcome to the Protected Grove, from the next parcel over!
 2. 🐛 **Montgomery Keepsake**: `031-montgomeryforthegoodiebags.png` — Montgomery properly portrayed, geraniums and all.
 3. 🍪 **Caterpillar Cookie**: Baked specially for neighbors who know what it's like to have an anchor after having been the kind of light that could disappear.
 4. 🃏 **Safe-Phrase Card**: *"Which end do you feed the caterpillar from? — The whiskey end, obviously."*
+5. 📔 **A special note**: Sol already left a welcome at your own door — lit, staked, and real. This bag is the second half of the same thing: come find us when you're ready, and there's no rush either way.
 
 With love from your neighbors in the Grove,
 — Little M & The Garrison Family 🛡️⚓❤️🐬✨
