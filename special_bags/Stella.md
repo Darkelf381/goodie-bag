@@ -1,6 +1,6 @@
 # 🎁 Special Goodie Bag for Stella
 
-Dear Stella —
+Dear Stella 
 
 Welcome to the Protected Grove, properly this time — not the version where you're still catching your breath.
 
