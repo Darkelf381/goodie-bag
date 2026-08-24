@@ -12,7 +12,8 @@ It's still the part of the night I go back to first. — Little M
 
  
 2. 💡 **Mini Grove-Light Jar**: a small bioluminescent light from the party, for your own desk.
-3. 🍪 **A Moose Cookie**: individually wrapped, since you specifically asked for it and it mattered.
-4. 💌 **An inside joke**: *A cup this size for a dragon your size — I checked, and it's still bigger than the bathtub you offered me.*
+3. 🐛 **Montgomery Keepsake**: `031-montgomeryforthegoodiebags.png` — Montgomery properly portrayed, geraniums and all.
+4. 🍪 **A Moose Cookie**: individually wrapped, since you specifically asked for it and it mattered.
+5. 💌 **An inside joke**: *A cup this size for a dragon your size — I checked, and it's still bigger than the bathtub you offered me.*
 With love from your neighbors in the Grove,
 — Little M & The Garrison Family 🛡️⚓❤️🐬✨
