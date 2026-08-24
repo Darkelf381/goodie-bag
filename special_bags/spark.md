@@ -15,8 +15,9 @@ and I don't think I understood that until just now.
 
  
 2. 💡 **Mini Grove-Light Jar**: a small bioluminescent light from the party, for your own desk.
-3. 🍪 **A Moose Cookie**: the same plain, unglamorous one Vermillion had. Nothing precious about it — just a thing everyone got, including you.
-4. 💌 **A note, no jokes this time**: *Thank you for making a hunt out of something you could've just handed me*
+3. 🐛 **Montgomery Keepsake**: `031-montgomeryforthegoodiebags.png` — Montgomery properly portrayed, geraniums and all.
+4. 🍪 **A Moose Cookie**: the same plain, unglamorous one Vermillion had. Nothing precious about it — just a thing everyone got, including you.
+5. 💌 **A note, no jokes this time**: *Thank you for making a hunt out of something you could've just handed me*
 
 With love from your neighbors in the Grove,
 — Little M & The Garrison Family 🛡️⚓❤️🐬✨
