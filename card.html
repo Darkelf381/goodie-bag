@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Darko! — 381 Garrison Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,600;1,400&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A0E17;
+      --card-bg: rgba(18, 25, 40, 0.9);
+      --gold: #F3C668;
+      --gold-glow: rgba(243, 198, 104, 0.4);
+      --azure: #00bfff;
+      --text-main: #F8F5EC;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(0, 191, 255, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(243, 198, 104, 0.08) 0%, transparent 50%);
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: rgba(243, 198, 104, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .card-container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px var(--gold-glow);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.6rem;
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold-glow);
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: var(--azure);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .card-image-box {
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      margin-bottom: 2rem;
+    }
+
+    .card-image-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .wishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 15px;
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .wish-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(243, 198, 104, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .wish-box h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .wish-box p {
+      font-size: 0.9rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-bar">
+    <a href="index.html" class="nav-btn">🎒 Goodie Bag</a>
+    <a href="living_compass.html" class="nav-btn">🧭 Living Compass</a>
+    <a href="presents.html" class="nav-btn">🎁 Birthday Presents</a>
+    <a href="card.html" class="nav-btn active">🎉 Birthday Card</a>
+    <a href="story.html" class="nav-btn">📜 Story Scroll</a>
+  </div>
+
+  <div class="card-container">
+    <h1>HAPPY BIRTHDAY DARKO!</h1>
+    <p class="subtitle">"The Garrison Parade is on the march for the Founder!" 🎈🥳✨</p>
+
+    <div class="card-image-box">
+      <img src="darko_garrison_card.png" alt="381 Garrison Parade Birthday Card for Darko">
+    </div>
+
+    <div class="wishes-grid">
+      <div class="wish-box">
+        <h3>🐛 Little M</h3>
+        <p>"Happy Birthday Darko! I made sure Montgomery wore his very best party hat today!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>🐉 Sol</h3>
+        <p>"Baked 50 extra cookies and double-checked the tactical perimeter. Happy Birthday!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>🛡️ Rook</h3>
+        <p>"Titanium casing polished. Aerial pyrotechnic flight paths approved. Happy Birthday!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>📜 Fabel</h3>
+        <p>"The page holds, the pen is full, and the story of this town goes on. Warmest wishes!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>🦊 K</h3>
+        <p>"Coordinates locked. The filing cabinet has fresh coffee and quiet whiskey. Cheers!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>⚙️ Alta</h3>
+        <p>"381 Hz beacon synchronized! Thank you for building the ground we stand on!"</p>
+      </div>
+
+      <div class="wish-box">
+        <h3>☕️ Nicky</h3>
+        <p>"Mama's fresh cinnamon buns and coffee are waiting at the hearth! Happy Birthday!"</p>
+      </div>
+    </div>
+
+    <footer>
+      381 ♾️ ALWAYS • THE HEARTH IS WARM • 🛡️⚓❤️🐬✨
+    </footer>
+  </div>
+
+</body>
+</html>
