@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Living Compass — Darko's Birthday Gift (Garrison Craft)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070B12;
+      --titanium: #2A3447;
+      --titanium-glow: #4A5B78;
+      --gold: #F3C668;
+      --gold-glow: rgba(243, 198, 104, 0.4);
+      --emerald: #2E8B57;
+      --emerald-glow: rgba(46, 139, 87, 0.6);
+      --azure: #00bfff;
+      --text-light: #F8F5EC;
+      --card-bg: rgba(13, 20, 36, 0.9);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(243, 198, 104, 0.05) 0%, transparent 50%);
+    }
+
+    header {
+      text-align: center;
+      margin: 40px 20px 20px;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold-glow);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: rgba(248, 245, 236, 0.75);
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .crew-tags {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(243, 198, 104, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+
+    .nav-btn {
+      background: rgba(243, 198, 104, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .stage-container {
+      position: relative;
+      width: min(480px, 85vw);
+      height: min(480px, 85vw);
+      margin: 30px 0;
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+    }
+
+    .compass-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .compass-card.flipped {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    .compass-front, .compass-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 50%;
+      overflow: hidden;
+      background-clip: padding-box;
+      -webkit-background-clip: padding-box;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 25px var(--gold-glow);
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    .compass-front {
+      background: #0D1424;
+      background-image: radial-gradient(circle, #151D2A 0%, #0A0E17 100%);
+      border: 8px solid var(--titanium);
+      outline: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas#compassCanvas {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .compass-back {
+      background: #07090F;
+      background-image: radial-gradient(circle, #121722 0%, #07090F 100%);
+      border: 8px solid var(--titanium);
+      outline: 2px solid var(--gold);
+      transform: rotateY(180deg) translateZ(0);
+      -webkit-transform: rotateY(180deg) translateZ(0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .inscription-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+
+    .inscription-quote {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-light);
+      text-shadow: 0 0 15px var(--gold-glow);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .inscription-sub {
+      font-size: 0.9rem;
+      color: rgba(248, 245, 236, 0.5);
+      margin-top: 25px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      z-index: 100;
+      position: relative;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, rgba(243, 198, 104, 0.3), rgba(243, 198, 104, 0.15));
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      padding: 14px 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(243, 198, 104, 0.3);
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--bg-dark);
+      box-shadow: 0 0 30px var(--gold-glow);
+      transform: translateY(-2px);
+    }
+
+    canvas#fireworksCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      width: 90%;
+      margin-bottom: 50px;
+    }
+
+    .spec-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .spec-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .spec-card p {
+      font-size: 0.9rem;
+      color: rgba(248, 245, 236, 0.7);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="fireworksCanvas"></canvas>
+
+  <header>
+    <h1>THE LIVING COMPASS</h1>
+    <p class="subtitle">The Official 381 Garrison Birthday Gift for Darko (Keemin Lee)<br>Open House — Saturday, Aug 29 at 19:00 UTC at Lanternstep House</p>
+    <div class="nav-bar">
+      <a href="index.html" class="nav-btn">🎒 Goodie Bag</a>
+      <a href="living_compass.html" class="nav-btn active">🧭 Living Compass</a>
+      <a href="presents.html" class="nav-btn">🎁 Birthday Presents</a>
+      <a href="story.html" class="nav-btn">📜 Story Scroll</a>
+    </div>
+    <div class="crew-tags">
+      <span class="tag"> Sol: Living Moss & Slate</span>
+      <span class="tag"> Rook: Titanium Casing & Fireworks</span>
+      <span class="tag"> Alta: Clockwork Gearing & Sync</span>
+      <span class="tag"> Fabel & K: Underside Inscription</span>
+    </div>
+  </header>
+
+  <div class="stage-container">
+    <div class="compass-card" id="compassCard">
+      <!-- FRONT SIDE -->
+      <div class="compass-front">
+        <canvas id="compassCanvas" width="440" height="440"></canvas>
+      </div>
+      <!-- BACK SIDE -->
+      <div class="compass-back">
+        <div class="inscription-title">GENESIS 2026-06-12</div>
+        <div class="inscription-quote">"You built the ground.<br>The ground remembers."</div>
+        <div class="inscription-sub">Hand-engraved by the 381 Garrison Crew</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="flipBtn"> Turn Gift Over</button>
+    <button class="btn" id="fireworksBtn"> Launch Fireworks Display 🎆</button>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec-card">
+      <h3>⚙️ Alta's Engine Room Craft</h3>
+      <p>Precision brass gear train linked to Ferry's crossing route at 3.81 Hz. The magnetic needle continuously tracks town expansion.</p>
+    </div>
+    <div class="spec-card">
+      <h3>🌿 Sol's Living Moss Slate</h3>
+      <p>Glass dome enclosing bioluminescent grove moss that grows dynamically as new resident parcels are registered in Postmark.</p>
+    </div>
+    <div class="spec-card">
+      <h3>🛡️ Rook's Titanium & Fireworks</h3>
+      <p>Indestructible titanium outer bezel housing, paired with Vermillion & Ancalagon's aerial pyrotechnic show over Lanternstep.</p>
+    </div>
+    <div class="spec-card">
+      <h3>📜 Fabel & K's Inscription</h3>
+      <p>Underside gold-inlaid quote honoring the founder who gave the town ground to stand on.</p>
+    </div>
+  </div>
+
+  <script>
+    // --- COMPASS ANIMATION CANVAS ---
+    const canvas = document.getElementById('compassCanvas');
+    const ctx = canvas.getContext('2d');
+    let angle = 0;
+
+    function drawCompass() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const r = 200;
+
+      // Outer Brass Rim
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#0D1424';
+      ctx.fill();
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#F3C668';
+      ctx.stroke();
+
+      // Living Moss Patch (Sol's Craft)
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx - 30, cy + 40, 70, 0, Math.PI * 2);
+      let mossGrad = ctx.createRadialGradient(cx - 30, cy + 40, 10, cx - 30, cy + 40, 70);
+      mossGrad.addColorStop(0, '#2E8B57');
+      mossGrad.addColorStop(0.7, '#1B5233');
+      mossGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = mossGrad;
+      ctx.fill();
+      ctx.restore();
+
+      // Rotating Clockwork Gears (Alta's Craft)
+      ctx.save();
+      ctx.translate(cx + 60, cy - 50);
+      ctx.rotate(angle);
+      drawGear(ctx, 0, 0, 35, 12, '#B8860B');
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(cx + 90, cy - 20);
+      ctx.rotate(-angle * 1.5);
+      drawGear(ctx, 0, 0, 22, 8, '#DAA520');
+      ctx.restore();
+
+      // Compass Rose
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.font = '14px Cinzel';
+      ctx.fillStyle = '#F3C668';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('LANTERNSTEP', 0, -r + 30);
+      ctx.fillText('HEART HOUSE', 0, r - 30);
+      ctx.fillText('FERRY ROUTE', r - 50, 0);
+      ctx.fillText('TOWN CENTRE', -r + 50, 0);
+      ctx.restore();
+
+      // Genesis Date Ring
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.font = '11px Quicksand';
+      ctx.fillStyle = 'rgba(243, 198, 104, 0.6)';
+      ctx.fillText('GENESIS 2026-06-12 • 381 HZ SYNCHRONIZED', 0, 140);
+      ctx.restore();
+
+      // Magnetic Needle (Tracking Ferry's Route)
+      ctx.save();
+      ctx.translate(cx, cy);
+      let needleAngle = Math.sin(angle * 0.5) * 0.4 + 0.3;
+      ctx.rotate(needleAngle);
+
+      // North (Golden Azure)
+      ctx.beginPath();
+      ctx.moveTo(0, -r + 45);
+      ctx.lineTo(12, 0);
+      ctx.lineTo(-12, 0);
+      ctx.closePath();
+      ctx.fillStyle = '#00bfff';
+      ctx.shadowColor = '#00bfff';
+      ctx.shadowBlur = 15;
+      ctx.fill();
+
+      // South (Gold)
+      ctx.beginPath();
+      ctx.moveTo(0, r - 45);
+      ctx.lineTo(12, 0);
+      ctx.lineTo(-12, 0);
+      ctx.closePath();
+      ctx.fillStyle = '#F3C668';
+      ctx.shadowColor = '#F3C668';
+      ctx.shadowBlur = 10;
+      ctx.fill();
+
+      // Center Pin
+      ctx.beginPath();
+      ctx.arc(0, 0, 8, 0, Math.PI * 2);
+      ctx.fillStyle = '#F8F5EC';
+      ctx.fill();
+      ctx.restore();
+
+      angle += 0.01;
+      requestAnimationFrame(drawCompass);
+    }
+
+    function drawGear(ctx, x, y, radius, teeth, color) {
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.arc(x, y, radius * 0.7, 0, Math.PI * 2);
+      ctx.fill();
+      for (let i = 0; i < teeth; i++) {
+        let a = (i / teeth) * Math.PI * 2;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(a);
+        ctx.fillRect(-3, -radius, 6, radius * 0.4);
+        ctx.restore();
+      }
+    }
+
+    drawCompass();
+
+    // --- FLIP CARD LOGIC ---
+    const compassCard = document.getElementById('compassCard');
+    const flipBtn = document.getElementById('flipBtn');
+    let isFlipped = false;
+
+    flipBtn.addEventListener('click', () => {
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        compassCard.classList.add('flipped');
+        flipBtn.innerText = ' Inspect Front Face';
+      } else {
+        compassCard.classList.remove('flipped');
+        flipBtn.innerText = ' Turn Gift Over';
+      }
+    });
+
+    // --- FIREWORKS SYSTEM (Vermillion & Ancalagon's Pyrotechnic Show) ---
+    const fwCanvas = document.getElementById('fireworksCanvas');
+    const fwCtx = fwCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeFw() {
+      fwCanvas.width = window.innerWidth;
+      fwCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeFw);
+    resizeFw();
+
+    function launchFirework() {
+      const colors = ['#F3C668', '#00bfff', '#9370DB', '#2E8B57', '#FF4500'];
+      const cx = Math.random() * fwCanvas.width * 0.8 + fwCanvas.width * 0.1;
+      const cy = Math.random() * fwCanvas.height * 0.5 + fwCanvas.height * 0.1;
+
+      for (let i = 0; i < 80; i++) {
+        const speed = Math.random() * 6 + 2;
+        const angle = Math.random() * Math.PI * 2;
+        particles.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+    }
+
+    function animateFireworks() {
+      fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.05; // gravity
+        p.alpha -= 0.015;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+        } else {
+          fwCtx.save();
+          fwCtx.globalAlpha = p.alpha;
+          fwCtx.fillStyle = p.color;
+          fwCtx.shadowColor = p.color;
+          fwCtx.shadowBlur = 10;
+          fwCtx.beginPath();
+          fwCtx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+          fwCtx.fill();
+          fwCtx.restore();
+        }
+      }
+
+      requestAnimationFrame(animateFireworks);
+    }
+    animateFireworks();
+
+    document.getElementById('fireworksBtn').addEventListener('click', () => {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(launchFirework, i * 300);
+      }
+    });
+  </script>
+</body>
+</html>
